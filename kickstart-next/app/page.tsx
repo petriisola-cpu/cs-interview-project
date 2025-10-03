@@ -1,7 +1,6 @@
 "use client"; // This directive indicates that the code is meant to run on the client side and the server side
 
 import DOMPurify from "dompurify";
-// PETRI COMMENTED OUT THE NEXT LINE BECAUSE IT THROWS AN ERROR IN THE BROWSER
 import Image from "next/image"; // Importing the Image component from Next.js for optimized image rendering
 import { getPage, initLivePreview } from "@/lib/contentstack"; // Importing functions to get page data and initialize live preview from a local library
 import { useEffect, useState } from "react"; // Importing React hooks for side effects and state management
@@ -47,16 +46,6 @@ export default function Home() {
             {page?.title} {/* Rendering the page title */}
           </h1>
         ) : null}
-         {/* PETRI ADDED AUTHOR HERE */}
-         {page?.author ? (
-          <h2
-            className="text-2xl font-bold mb-4 text-center"
-            {...(page?.$ && page?.$.author)} // Adding editable tags if available
-          >
-            {page?.author} {/* Rendering the page author */}
-          </h2>
-         ) : null}
-         {/* PETRI ADDED AUTHOR ABOVE */}
         {page?.description ? (
           <p className="mb-4 text-center" {...(page?.$ && page?.$.description)}>
             {/* Adding editable tags if available */}

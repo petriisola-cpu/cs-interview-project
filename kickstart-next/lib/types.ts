@@ -71,5 +71,4 @@ export interface Page {
   image?: File | null;
   rich_text?: string;
   blocks?: Blocks[];
-  author?: string;
 }

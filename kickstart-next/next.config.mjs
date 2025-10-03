@@ -6,14 +6,8 @@ const nextConfig = {
       ...(process.env.NEXT_PUBLIC_CONTENTSTACK_IMAGE_HOSTNAME
         ? [{ hostname: process.env.NEXT_PUBLIC_CONTENTSTACK_IMAGE_HOSTNAME }]
         : [
-          // added per Claude's suggestion  
-          // { protocol: "https"},
-            //{ hostname: "images.contentstack.io" },
-            //{ port: ''},
-            //{ pathname: "/**"},
-            // end of addition
-             { hostname: "images.contentstack.io" },
-             { hostname: "*-images.contentstack.com" },
+            { hostname: "images.contentstack.io" },
+            { hostname: "*-images.contentstack.com" },
           ]),
     ],
   },
