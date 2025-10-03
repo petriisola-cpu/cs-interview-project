@@ -28,6 +28,7 @@ export interface File {
   _metadata?: object;
   publish_details: PublishDetails;
   author?: string;
+  logo?: File | null;
   $: any;
 }
 
@@ -67,6 +68,7 @@ export interface Page {
   _version?: number;
   title: string;
   url?: string;
+  logo?: File | null;
   description?: string;
   image?: File | null;
   rich_text?: string;

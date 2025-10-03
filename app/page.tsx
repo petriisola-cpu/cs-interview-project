@@ -37,8 +37,22 @@ export default function Home() {
   return (
     <main className="max-w-(--breakpoint-md) mx-auto">
       {/* Main container with max width and centered alignment */}
-      <section className="p-4">
-        {/* Section with padding */}
+      {/* PETRI added the logo here */}
+      {page?.logo ? (
+          <Image 
+            className="mb-4"
+            width={175}
+            height={100}
+            src={page?.logo.url}
+            alt={page?.logo.title}
+            {...(page?.logo?.$ && page?.logo?.$.url)} // Adding editable tags if available
+          />
+        ) : null}
+
+      {/* PETRI added the logo above */}
+
+      {/* Section with padding */}
+      <section>
         {page?.title ? (
           <h1
             className="text-4xl font-bold mb-4 text-center"
