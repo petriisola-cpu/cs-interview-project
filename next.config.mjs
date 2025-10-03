@@ -15,8 +15,14 @@ const nextConfig = {
              { hostname: "images.contentstack.io" },
              { hostname: "*-images.contentstack.com" },
           ]),
+          {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
   },
 };
+
+
 
 export default nextConfig;

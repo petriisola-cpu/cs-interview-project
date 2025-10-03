@@ -71,7 +71,9 @@ export interface Page {
   logo?: File | null;
   description?: string;
   image?: File | null;
+  cloudinary?: File | null;
   rich_text?: string;
+  json_rte?: string;
   blocks?: Blocks[];
   author?: string;
 }

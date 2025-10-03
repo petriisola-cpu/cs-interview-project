@@ -1,7 +1,8 @@
 "use client"; // This directive indicates that the code is meant to run on the client side and the server side
 
+import contentstack, { StackConfig } from '@contentstack/delivery-sdk';
+import { jsonToHTML } from '@contentstack/utils'
 import DOMPurify from "dompurify";
-// PETRI COMMENTED OUT THE NEXT LINE BECAUSE IT THROWS AN ERROR IN THE BROWSER
 import Image from "next/image"; // Importing the Image component from Next.js for optimized image rendering
 import { getPage, initLivePreview } from "@/lib/contentstack"; // Importing functions to get page data and initialize live preview from a local library
 import { useEffect, useState } from "react"; // Importing React hooks for side effects and state management
@@ -77,6 +78,8 @@ export default function Home() {
             {page?.description} {/* Rendering the page description */}
           </p>
         ) : null}
+
+
         {page?.image ? (
           <Image
             className="mb-4"
@@ -87,6 +90,19 @@ export default function Home() {
             {...(page?.image?.$ && page?.image?.$.url)} // Adding editable tags if available
           />
         ) : null}
+
+        {page?.cloudinary ? (
+          <Image
+            className="mb-4"
+            width={768}
+            height={414}
+            src={page?.cloudinary.url}
+            alt={page?.cloudinary.title}
+            {...(page?.cloudinary?.$ && page?.cloudinary?.$.url)} // Adding editable tags if available
+          />
+        ) : null}
+
+
         {page?.rich_text ? (
           <div
             {...(page?.$ && page?.$.rich_text)} // Adding editable tags if available
@@ -94,7 +110,27 @@ export default function Home() {
               __html: DOMPurify.sanitize(page?.rich_text),
             }} // Rendering rich text content as HTML
           />
+        ) : null} 
+
+        {/*
+        {page?.json_rte ? (
+          <div
+            {...(page?.$ && page?.$.json_rte)} // Adding editable tags if available
+            dangerouslySetInnerHTML={{
+              __html: jsonToHTML(page?.json_rte),
+            }} // Rendering rich text content as HTML
+          />
         ) : null}
+         */}
+ 
+
+
+
+
+
+ 
+
+
         <div
           className={`space-y-8 max-w-full mt-4 ${
             !page?.blocks || page.blocks.length === 0
