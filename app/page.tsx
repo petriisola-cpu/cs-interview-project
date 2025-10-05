@@ -91,7 +91,7 @@ export default function Home() {
           />
         ) : null}
 
-        {page?.cloudinary ? (
+        {/* {page?.cloudinary ? (
           <Image
             className="mb-4"
             width={768}
@@ -100,7 +100,7 @@ export default function Home() {
             alt={page?.cloudinary.title}
             {...(page?.cloudinary?.$ && page?.cloudinary?.$.url)} // Adding editable tags if available
           />
-        ) : null}
+        ) : null} */}
 
 
         {page?.rich_text ? (
