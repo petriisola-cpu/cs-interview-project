@@ -28,7 +28,7 @@ export interface File {
   _metadata?: object;
   publish_details: PublishDetails;
   author?: string;
-  logo?: File | null;
+  //logo?: File | null;
   $: any;
 }
 
@@ -61,6 +61,26 @@ export interface Blocks {
   block: Block;
 }
 
+// NavigationItem object - Represents a navigation menu item
+export interface NavigationItem {
+  title: string;
+  url: string;
+  _metadata?: any;
+  $?: any;
+}
+
+// Header object - Represents the global page header
+export interface Header {
+  uid: string;
+  title: string;
+  logo?: File | null;
+  navigation_menu?: NavigationItem[];
+  _version?: number;
+  _metadata?: any;
+  announcement_text?: string;
+  $?: any;
+}
+
 // Page object - Represents a page in Contentstack
 export interface Page {
   uid: string;
@@ -73,7 +93,7 @@ export interface Page {
   image?: File | null;
   cloudinary?: File | null;
   rich_text?: string;
-  json_rte?: string;
+  json_rte?: any;
   blocks?: Blocks[];
   author?: string;
 }

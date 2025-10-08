@@ -4,8 +4,8 @@ import contentstack, { QueryOperation } from "@contentstack/delivery-sdk";
 // Importing Contentstack Live Preview utilities and stack SDK 
 import ContentstackLivePreview, { IStackSdk } from "@contentstack/live-preview-utils";
 
-// Importing the Page type definition 
-import { Page } from "./types";
+// Importing the Page and Header type definitions 
+import { Page, Header } from "./types";
 
 // helper functions from private package to retrieve Contentstack endpoints in a convienient way
 import { getContentstackEndpoints, getRegionForString } from "@timbenniks/contentstack-endpoints";
@@ -69,6 +69,7 @@ export function initLivePreview() {
     },
   });
 }
+
 // Function to fetch page data based on the URL
 export async function getPage(url: string) {
   const result = await stack
@@ -86,5 +87,34 @@ export async function getPage(url: string) {
     }
 
     return entry; // Returning the fetched entry
+  }
+}
+
+/**
+ * Fetches the global header from Contentstack
+ * @returns Promise<Header | undefined>
+ */
+export async function getHeader(): Promise<Header | undefined> {
+  try {
+    const result = await stack
+      .contentType("header")
+      .entry()
+      .includeReference(["logo"])
+      .find<Header>();
+
+    if (result.entries && result.entries.length > 0) {
+      const entry = result.entries[0];
+      
+      if (process.env.NEXT_PUBLIC_CONTENTSTACK_PREVIEW === 'true') {
+        contentstack.Utils.addEditableTags(entry, 'header', true);
+      }
+
+      return entry;
+    }
+    
+    return undefined;
+  } catch (error) {
+    console.error("Error fetching header:", error);
+    return undefined;
   }
 }
